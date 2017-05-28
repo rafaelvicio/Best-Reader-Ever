@@ -4,6 +4,15 @@
   </ion-navbar>
 </ion-header>
 
+<ion-refresher (ionRefresh)="doRefresh($event)">
+   <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+   </ion-refresher-content>
+</ion-refresher>
+
 <ion-content>
   <ion-list>
     <button ion-item *ngFor="let feed of feeds" (click)="itemSelected(feed)">
@@ -14,9 +23,11 @@
     <p>{{feed.data.domain}}</p>
  </button>
 </ion-list>
+
 <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
    <ion-infinite-scroll-content
       loadingText="Loading more data...">
    </ion-infinite-scroll-content>
 </ion-infinite-scroll>
+
 </ion-content>

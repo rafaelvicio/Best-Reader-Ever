@@ -6,10 +6,17 @@
 
 <ion-content>
   <ion-list>
-    <button ion-item *ngFor="let applicant of applicants" (click)="itemSelected(feed)">
-     <ion-thumbnail item-left>
-     </ion-thumbnail>
-     <h2>{{applicant.congressperson_name}}</h2>
-  </button>
+    <button ion-item *ngFor="let feed of feeds" (click)="itemSelected(feed)">
+    <ion-thumbnail item-left>
+       <img [src]="feed.data.thumbnail">
+    </ion-thumbnail>
+    <h2>{{feed.data.title}}</h2>
+    <p>{{feed.data.domain}}</p>
+ </button>
 </ion-list>
+<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+   <ion-infinite-scroll-content
+      loadingText="Loading more data...">
+   </ion-infinite-scroll-content>
+</ion-infinite-scroll>
 </ion-content>
